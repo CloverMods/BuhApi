@@ -6,7 +6,7 @@ var express = require('express'),
     secure = require('ssl-express-www');
 //const PORT = p 8080 || 5000 || 3000
 //var { color } = require('./lib/color.js')
-const logger = require('morgan');
+//const logger = require('morgan');
 //////////////////////////////
 var mainrouter = require('./routes/main'),
     apirouter = require('./routes/api')
@@ -16,7 +16,7 @@ var app = express()
 app.enable('trust proxy');
 app.set("json spaces",2)
 app.use(cors())
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(secure)
 app.use(express.static("public"))
 
