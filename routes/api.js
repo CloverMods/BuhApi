@@ -47,7 +47,7 @@ var fs = require('fs');
 //var emoji = new EmojiAPI();
 var router = express.Router();
 var { TiktokDownloader } = require('../lib/tiktokdl.js')
-var { color, bgcolor } = require(__path + '/lib/color.js');
+//var { color, bgcolor } = require(__path + '/lib/color.js');
 var { fetchJson } = require(__path + '/lib/fetcher.js');
 var options = require(__path + '/lib/options.js');
 var {
@@ -966,7 +966,7 @@ router.get('/short/tinyurl', async (req, res, next) => {
           resultado: `${body}`
         })
       } catch (e) {
-        console.log('Error :', color(e, 'red'))
+
         res.json(loghandler.invalidlink)
       }
     })
@@ -1078,7 +1078,8 @@ router.get('/info/gempa', async (req, res, next) => {
         })
       })
       .catch(e => {
-        console.log('Error :', color(e, 'red'))
+
+
         res.json(loghandler.error)
       })
   } else {
@@ -1101,7 +1102,7 @@ router.get('/muslim/kisahnabi', async (req, res, next) => {
         })
       })
       .catch(e => {
-        console.log('Error :', color(e, 'red'))
+ 
         res.json(loghandler.error)
       })
   } else {
