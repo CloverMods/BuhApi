@@ -16,7 +16,7 @@ var tiktok = require(__path + '/database/index.js');
 var pin = require(__path + '/database/pinterest.js');
 
 
-const listkey = ["sophia", "clover", "frost"];
+const listkey = ["clover"];
 
 
 
@@ -40,11 +40,11 @@ var fetch = require('node-fetch');
 var cheerio = require('cheerio');
 var request = require('request');
 var zrapi = require("zrapi");
-var dotenv = require("dotenv").config()
+//var dotenv = require("dotenv").config()
 var fs = require('fs');
-var TikTokScraper = require('tiktok-scraper');
-var { EmojiAPI } = require("emoji-api");
-var emoji = new EmojiAPI();
+//var TikTokScraper = require('tiktok-scraper');
+//var { EmojiAPI } = require("emoji-api");
+//var emoji = new EmojiAPI();
 var router = express.Router();
 var { TiktokDownloader } = require('../lib/tiktokdl.js')
 var { color, bgcolor } = require(__path + '/lib/color.js');
@@ -94,11 +94,7 @@ var {
   ytSearch
 } = require("./../lib/utils/yt");
 
-var {
-  Joox,
-  FB,
-  Tiktok
-} = require("./../lib/utils/downloader");
+
 
 var {
   Cuaca,
@@ -862,34 +858,7 @@ router.get('/downloader/fb', async (req, res, next) => {
   }
 });
 
-router.get('/stalk/tiktok', async (req, res, next) => {
-  var Apikey = req.query.apikey,
-    username = req.query.username
 
-  if (!Apikey) return res.json(loghandler.notparam)
-  if (listkey.includes(Apikey)) {
-    if (!username) return res.json(loghandler.notusername)
-
-
-    TikTokScraper.getUserProfileInfo(username)
-      .then(user => {
-        res.json({
-          status: true,
-          criador: `${creator}`,
-          resultado: user
-        })
-      })
-      .catch(e => {
-        res.json({
-          status: false,
-          criador: `${creator}`,
-          mensagem: "error, mungkin username anda tidak valid"
-        })
-      })
-  } else {
-    res.json(loghandler.invalidKey)
-  }
-})
 
 router.get('/stalk/ig2', async (req, res, next) => {
   const username = req.query.username;
@@ -6427,33 +6396,7 @@ router.get('/maker/tololserti', async (req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
-router.get('/maker/emoji2png', async (req, res, next) => {
-  const apikey = req.query.apikey;
-  const Emoji = req.query.text;
 
-  if (!apikey) return jes.json(loghandler.notparam)
-  if (!Emoji) return res.json(loghandler.nottext)
-
-  if (listkey.includes(apikey)) {
-
-    emoji.get(Emoji)
-      .then(img_emoji => {
-        const resultado = {
-          status: true,
-          codigo: 200,
-          criador: `${creator}`,
-          resultado: img_emoji.images[0].url
-        }
-        res.json(result)
-      })
-
-      .catch((err) => {
-        res.json(loghandler.error)
-      })
-  } else {
-    res.json(loghandler.invalidKey)
-  }
-});
 
 router.get('/downloader/facebook2', async (req, res, next) => {
   const apikey = req.query.apikey;
